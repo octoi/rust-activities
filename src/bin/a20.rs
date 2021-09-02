@@ -61,6 +61,7 @@ fn main() {
     use std::io;
     let mut buffer = String::new();
 
+    println!("Enter a power state: ");
     let user_input_state = io::stdin().read_line(&mut buffer);
     if user_input_state.is_ok() {
         match PowerState::new(&buffer) {
