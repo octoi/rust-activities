@@ -30,7 +30,7 @@ enum RgbError {
     #[error("hex colors must being with hash (#)")]
     MissingHash,
     #[error("failed to parse hex digit: {0}")]
-    ParseError(std::num::ParseIntError),
+    ParseError(#[from] std::num::ParseIntError),
     #[error("invalid hex color length (must be 6)")]
     LengthError,
 }
@@ -59,11 +59,6 @@ impl TryFrom<&str> for Rgb {
     }
 }
 
-impl From<std::num::ParseIntError> for RgbError {
-    fn from(err: std::num::ParseIntError) -> Self {
-        Self::ParseError(err)
-    }
-}
 
 fn main() {
     // Use `cargo test --bin a37` to test your implementation
